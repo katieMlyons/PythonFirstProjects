@@ -14,6 +14,7 @@
             TextInput:
                 id: password
                 hint_text:"Password"
+                password: True
             RelativeLayout:    
                 Button:
                     text: "Login"
@@ -25,14 +26,25 @@
                 text: ""
         GridLayout:
             cols: 2
+            size_hint: 0.2,0.2
+            padding: 10,10
+            spacing: 10,0
             Button:
                 text: "Forgot Password"
+                background_color: 1,1,1,0
+                opacity: 1 if self.state=="normal" else 0.5
+                color: 0.1,0.7,1
             Button:
                 text: "Sign Up"
                 on_press: root.sign_up()
+                background_color: 1,1,1,0
+                opacity: 1 if self.state=="normal" else 0.5
+                color: 0.1,0.7,1,1
 <SignUpScreen>:
     GridLayout:
         cols: 1
+        padding: 20,20
+        spacing: 20,20
         Label:
             text:"Sign up for a space journey"
         TextInput:
@@ -57,9 +69,14 @@
 <LoginScreenSuccess>:
     GridLayout:
         cols: 1
-        Button:
-            text: "Logout"
-            on_press:root.log_out()
+        padding: 30,30
+        spacing: 30,30
+        RelativeLayout:
+            ImageButton:
+                on_press:root.log_out()
+                source:'logout_hover.png' if self.hovered else 'logout_nothover.png'
+                size_hint: 0.35,0.35
+                pos_hint: {'center_x':0.93,'center_y':0.8}
         Label:
             text: "How do you feel?"
         TextInput:
